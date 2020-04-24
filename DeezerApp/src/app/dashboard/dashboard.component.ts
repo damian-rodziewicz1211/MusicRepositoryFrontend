@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Track } from "../track";
+import { TrackService } from "../service/track.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -8,10 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  tracks: Track[];
 
-  constructor() { }
+  constructor(private trackService: TrackService) { }
 
-  ngOnInit(): void {
+  getTracks(): void {
+    this.trackService.getTracks().subscribe(tracks => this.tracks = tracks);
+  }
+
+  ngOnInit() {
+    this.getTracks();
   }
 
 }

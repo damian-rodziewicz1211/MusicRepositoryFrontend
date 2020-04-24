@@ -34,3 +34,40 @@
   height: 70px;
   width: 150px;
 }
+h2 {
+  padding-left: 160px;
+  font-family: SansSerif, Arial;
+}
+.cover{
+  width: 300px;
+  height: 300px;
+}
+a {
+  display: none;
+}
+.wrapper{
+  overflow: hidden;
+  padding-left: 160px;
+  border-style: solid;
+  border-width: thick;
+}
+.last{
+  display: inline;
+  float: left;
+}
+
+.description{
+  display: inline;
+  float: right;
+  list-style: none;
+
+  font-family: SansSerif, Arial;
+  font-size: 20px;
+  font-weight: bold;
+}
+li{
+  margin: 0 0 40px 0;
+}
+
+
+
