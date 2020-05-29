@@ -1,3 +1,4 @@
+<h2>Hi {{currentUser.username}}</h2>
 <h2>Recently added Tracks</h2>
 <div class="grid">
   <a *ngFor="let track of tracks; let last = last" [ngClass]="{ last: last}" class ="col-1-3">

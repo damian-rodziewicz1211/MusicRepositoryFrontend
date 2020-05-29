@@ -3,11 +3,13 @@
 <div class="sidenav">
   <img class="logo" src="assets/img/logo.jpg" alt="Deezer logo">
   <a class="active" href="home">Home</a>
-  <a href="mymusic">My Music</a>
-  <a href="browse">Browse</a>
+  <a href="components/mymusic">My Music</a>
+  <a href="components/browse">Browse</a>
   <a href="about">About</a>
+  <a class="nav-item nav-link" (click)="logout()">Logout</a>
 </div>
 
+<app-alert></app-alert>
 <router-outlet></router-outlet>
 
 

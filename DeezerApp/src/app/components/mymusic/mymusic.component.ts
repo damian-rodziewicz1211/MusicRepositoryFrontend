@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Track } from "../track";
-import { TrackService } from "../service/track.service";
+
+import { TrackService } from "../../service/track.service";
 
 @Component({
   selector: 'app-mymusic',
@@ -9,12 +9,14 @@ import { TrackService } from "../service/track.service";
 })
 export class MymusicComponent implements OnInit {
 
-  tracks: Track[];
+  tracks: Array<any>;
 
   constructor(private trackService: TrackService) { }
 
   getTracks(): void {
-    this.trackService.getTracks().subscribe(tracks => this.tracks = tracks);
+    this.trackService.getTracks().subscribe(tracks => {
+      this.tracks = tracks
+    });
   }
 
   ngOnInit() {

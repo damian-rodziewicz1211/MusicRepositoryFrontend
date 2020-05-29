@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Track } from "../track";
-import { TRACKS } from "../mock-tracks";
 import { Observable, of} from "rxjs";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TrackService {
 
-  constructor() { }
+  constructor( private http: HttpClient) { }
 
-  getTracks(): Observable<Track[]> {
-    return of(TRACKS);
+  getTracks(): Observable<any> {
+    return this.http.get('//localhost:8080/track');
   }
 }
