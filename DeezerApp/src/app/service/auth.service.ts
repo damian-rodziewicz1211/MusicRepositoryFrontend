@@ -22,7 +22,7 @@ export class AuthService {
   }
 
   login(username:string, password:string) {
-    return this.http.post<any>(`localhost:8080/authenticate`, { username, password })
+    return this.http.post<any>(`http://localhost:8080/authenticate`, { username, password })
       .pipe(map(user => {
         //store user details and jwt token
         localStorage.setItem('currentUser', JSON.stringify(user));
