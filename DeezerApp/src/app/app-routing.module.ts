@@ -14,8 +14,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'home', component: DashboardComponent},
-  { path: 'mymusic', component: MymusicComponent },
-  { path: 'browse', component: BrowseComponent},
+  { path: 'components/mymusic', component: MymusicComponent, canActivate: [AuthGuard] },
+  { path: 'components/browse', component: BrowseComponent, canActivate: [AuthGuard]},
 
   { path: '**', redirectTo: ''}
 ];

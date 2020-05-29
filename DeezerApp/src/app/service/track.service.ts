@@ -10,6 +10,6 @@ export class TrackService {
   constructor( private http: HttpClient) { }
 
   getTracks(): Observable<any> {
-    return this.http.get('//localhost:8080/track');
+    return this.http.get('http://localhost:8080/track');
   }
 }
