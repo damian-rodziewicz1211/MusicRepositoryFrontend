@@ -6,12 +6,16 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 
 import { AppComponent } from './app.component';
-import { AlertComponent } from './alert/alert.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { AlertComponent } from './_components/alert/alert.component';
+import { HomeComponent } from './_components/home/home.component';
+import { LoginComponent } from './_components/login/login.component';
+import { RegisterComponent } from './_components/register/register.component';
 import {JwtInterceptor} from "./_helpers/jwt.interceptor";
 import {ErrorInterceptor} from "./_helpers/error.interceptor";
+import { TracksComponent } from './_components/tracks/tracks.component';
+import { AlbumsComponent } from './_components/albums/albums.component';
+import { ArtistComponent } from './_components/artists/artist.component';
+import { PlaylistsComponent } from './_components/playlists/playlists.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +24,10 @@ import {ErrorInterceptor} from "./_helpers/error.interceptor";
     HomeComponent,
     LoginComponent,
     RegisterComponent,
+    TracksComponent,
+    AlbumsComponent,
+    ArtistComponent,
+    PlaylistsComponent,
 
   ],
   imports: [

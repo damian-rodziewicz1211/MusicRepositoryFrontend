@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AlertService} from "../_services/alert.service";
-import {UserService} from "../_services/user.service";
-import {AuthenticationService} from "../_services/authentication.service";
+import {AlertService} from "../../_services/alert.service";
+import {UserService} from "../../_services/user.service";
+import {AuthenticationService} from "../../_services/authentication.service";
 import {Router} from "@angular/router";
 import {first} from "rxjs/operators";
 

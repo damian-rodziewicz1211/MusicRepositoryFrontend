@@ -1,6 +1,10 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
   <div class="navbar-nav">
     <a class="nav-item nav-link" routerLink="/">Home</a>
+    <a class="nav-item nav-link" routerLink="/tracks">My Tracks</a>
+    <a class="nav-item nav-link" routerLink="/albums">My Albums</a>
+    <a class="nav-item nav-link" routerLink="/artists">My Artists</a>
+    <a class="nav-item nav-link" routerLink="/playlists">My Playlists</a>
     <a class="nav-item nav-link" (click)="logout()">Logout</a>
   </div>
 </nav>

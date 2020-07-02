@@ -1,0 +1,8 @@
+<h2>My Playlists</h2>
+<ul>
+  <li *ngFor="let playlist of playlists">
+    <span> {{playlist.playlistTitle | json}} </span>
+    <span> {{playlist.description | json}} </span>
+    <span> {{playlist.playlistTracks | json}} </span>
+  </li>
+</ul>

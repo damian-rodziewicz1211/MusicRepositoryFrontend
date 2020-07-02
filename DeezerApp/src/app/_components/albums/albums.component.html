@@ -1,0 +1,14 @@
+<h2>My Albums</h2>
+
+
+<ul>
+  <li *ngFor="let album of albums">
+    <span> {{album.title | json}}</span>
+    <span> - {{album.artist | json}}</span>
+    <ul>
+      <li>
+        <span> - {{album.tracks | json}}</span>
+      </li>
+    </ul>
+  </li>
+</ul>
