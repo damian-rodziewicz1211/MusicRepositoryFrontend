@@ -1,7 +1,9 @@
 export class Album {
-  id: number;
+  albumId: number;
   title: string;
   artist: string;
-  tracks = new Map();
+  tracks = new Map<string,string>();
   genre: string;
+  cover: string;
+  deezerId: number;
 }

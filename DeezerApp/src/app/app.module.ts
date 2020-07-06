@@ -10,12 +10,13 @@ import { AlertComponent } from './_components/alert/alert.component';
 import { HomeComponent } from './_components/home/home.component';
 import { LoginComponent } from './_components/login/login.component';
 import { RegisterComponent } from './_components/register/register.component';
-import {JwtInterceptor} from "./_helpers/jwt.interceptor";
-import {ErrorInterceptor} from "./_helpers/error.interceptor";
+import { JwtInterceptor } from "./_helpers/jwt.interceptor";
+import { ErrorInterceptor } from "./_helpers/error.interceptor";
 import { TracksComponent } from './_components/tracks/tracks.component';
 import { AlbumsComponent } from './_components/albums/albums.component';
-import { ArtistComponent } from './_components/artists/artist.component';
-import { PlaylistsComponent } from './_components/playlists/playlists.component';
+import { NgxAudioPlayerModule } from 'ngx-audio-player';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -26,8 +27,7 @@ import { PlaylistsComponent } from './_components/playlists/playlists.component'
     RegisterComponent,
     TracksComponent,
     AlbumsComponent,
-    ArtistComponent,
-    PlaylistsComponent,
+
 
   ],
   imports: [
@@ -35,7 +35,9 @@ import { PlaylistsComponent } from './_components/playlists/playlists.component'
     appRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxAudioPlayerModule,
+    BrowserAnimationsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

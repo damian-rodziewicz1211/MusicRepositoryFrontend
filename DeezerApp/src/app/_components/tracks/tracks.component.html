@@ -1,7 +1,24 @@
 <h2>My Tracks</h2>
-<ul>
-  <li *ngFor="let track of tracks">
-    <span> {{track.title}}</span>
-    <span> - {{track.artist}}</span>
+<ul class="tracks">
+  <li *ngFor="let track of tracks" (click)="onSelect(track)">
+    <span>
+      <img src="{{track.cover}}" alt="Album cover" class="cover">
+    </span>
+    <span class="details">
+      <p class = "h6">{{track.title}}</p>
+      <p>{{track.artist}}</p>
+      <p>{{track.album}}</p>
+    </span>
+    <button type="button" class="btn btn-outline-dark" (click)="deleteTrack(); refresh()">Remove</button>
   </li>
+
 </ul>
+
+<div class="player">
+  <mat-basic-audio-player class ="player" [audioUrl]="msbapAudioUrl"
+                          [title]="msbapTitle"
+                          [autoPlay]="msbapAutoPlay" muted="muted"
+                          [displayTitle]="msbapDisplayTitle"
+                          [displayVolumeControls]="msbapDisplayVolumeControls" >
+  </mat-basic-audio-player>
+</div>

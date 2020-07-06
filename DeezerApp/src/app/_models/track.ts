@@ -1,7 +1,10 @@
 export class Track {
-  id: number;
+  trackId: number;
   title: string;
   album: string;
   artist: string;
   duration: number;
+  preview: string;
+  cover: string;
+  deezerId: number;
 }

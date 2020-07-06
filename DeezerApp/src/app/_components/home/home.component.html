@@ -1,4 +1,51 @@
-<h1>Of course {{currentUser.username | json}}!</h1>
+<h2>EXPLORE</h2>
 
 
-<p>You're logged in with Angular 8!!</p>
+<form (ngSubmit)="onSubmit()" class="searchbar">
+  <div class="input-group">
+    <input type="text" [formControl]="query" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="Search...">
+    <div class="input-group-append" id="button-addon4">
+      <button class="btn btn-outline-secondary" type="submit" (click)="onTrackClick()">Track</button>
+      <button class="btn btn-outline-secondary" type="submit" (click)="onAlbumClick()">Album</button>
+    </div>
+  </div>
+</form>
+
+<div *ngIf="divider === true; else elseBlock">
+  <ul class="tracks">
+    <li *ngFor="let track of tracks" (click)="onSelectTrack(track)">
+      <span class="badge">
+        <img src="{{track.cover}}" alt="Album cover">
+      </span>
+      <span class="details">
+        <p>{{track.title}}</p>
+        <p>{{track.artist}}</p>
+        <p>{{track.deezerId}}</p>
+      </span>
+      <button type="button" class="btn btn-outline-dark" (click)="addTrack()">Add</button>
+    </li>
+  </ul>
+  <div class="player">
+    <mat-basic-audio-player class ="player" [audioUrl]="msbapAudioUrl"
+                            [title]="msbapTitle"
+                            [autoPlay]="msbapAutoPlay" muted="muted"
+                            [displayTitle]="msbapDisplayTitle"
+                            [displayVolumeControls]="msbapDisplayVolumeControls" >
+    </mat-basic-audio-player>
+  </div>
+</div>
+<ng-template #elseBlock>
+  <ul class="tracks">
+    <li *ngFor="let album of albums" (click)="onSelectAlbum(album)">
+      <span>
+        <img src="{{album.cover}}" alt="Album cover">
+      </span>
+      <span class="details">
+        <p  class="h6">{{album.title}}</p>
+        <p>{{album.genre}}</p>
+
+      </span>
+      <button type="button" class="btn btn-outline-dark" (click)="addAlbum()" >Add</button>
+    </li>
+  </ul>
+</ng-template>

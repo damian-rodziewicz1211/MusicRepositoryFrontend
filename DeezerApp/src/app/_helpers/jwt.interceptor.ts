@@ -10,7 +10,8 @@ import {AuthenticationService} from "../_services/authentication.service";
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-
+  Methods : string = 'Access-Control-Allow-Methods';
+  Headers : string = 'Access-Control-Allow-Headers';
   constructor(
     private authenticationService: AuthenticationService
   ) {}
@@ -22,6 +23,7 @@ export class JwtInterceptor implements HttpInterceptor {
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${currentUser.token}`
+
         }
       });
     }

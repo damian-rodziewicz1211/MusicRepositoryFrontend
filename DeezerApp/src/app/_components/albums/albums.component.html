@@ -1,14 +1,20 @@
-<h2>My Albums</h2>
+<h1>My Albums</h1>
 
-
-<ul>
-  <li *ngFor="let album of albums">
-    <span> {{album.title | json}}</span>
-    <span> - {{album.artist | json}}</span>
-    <ul>
-      <li>
-        <span> - {{album.tracks | json}}</span>
-      </li>
-    </ul>
+<div class="container">
+<ul class=albums>
+  <li *ngFor="let album of albums"  (click)="onSelect(album)">
+    <span>
+      <img src="{{album.cover}}" alt="Album cover" class="cover">
+    </span>
+    <span class = "details">
+      <p class="h6">{{album.title}}</p>
+      <p>{{album.artist}}</p>
+      <p>{{album.genre}}</p>
+    </span>
+    <button type="button" class="btn btn-outline-dark" (click)="deleteAlbum(); refresh()">Remove</button>
   </li>
 </ul>
+</div>
+
+
+

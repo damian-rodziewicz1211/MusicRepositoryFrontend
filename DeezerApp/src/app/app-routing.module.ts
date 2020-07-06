@@ -6,8 +6,8 @@ import {LoginComponent} from "./_components/login/login.component";
 import {RegisterComponent} from "./_components/register/register.component";
 import {TracksComponent} from "./_components/tracks/tracks.component";
 import {AlbumsComponent} from "./_components/albums/albums.component";
-import {ArtistComponent} from "./_components/artists/artist.component";
-import {PlaylistsComponent} from "./_components/playlists/playlists.component";
+
+
 
 
 const routes: Routes = [
@@ -16,8 +16,6 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'tracks', component: TracksComponent, canActivate: [AuthGuard]},
   { path: 'albums', component: AlbumsComponent, canActivate: [AuthGuard]},
-  { path: 'artists', component: ArtistComponent, canActivate: [AuthGuard]},
-  { path: 'playlists', component: PlaylistsComponent, canActivate: [AuthGuard]},
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];
