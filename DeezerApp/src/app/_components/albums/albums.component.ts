@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AlbumService} from "../../_services/album.service";
 import {Album} from "../../_models/album";
 import {Track} from "ngx-audio-player";
+import {AlertService} from "../../_services/alert.service";
 
 @Component({
   selector: 'app-albums',
@@ -19,7 +20,8 @@ export class AlbumsComponent implements OnInit {
 
 
   constructor(
-    private albumService: AlbumService
+    private albumService: AlbumService,
+    private alertService: AlertService
   ) { }
 
   public printAlbums() {
@@ -27,19 +29,16 @@ export class AlbumsComponent implements OnInit {
       .subscribe(albums => this.albums = albums);
   }
 
-  public getAlbum() {
-    return this.albumService.getAlbum()
-      .subscribe(album => this.album = album);
-  }
-
   public deleteAlbum() {
+    this.alertService.clear();
     this.albumId = this.selectedAlbum.albumId;
-    window.alert("Track removed from favourites");
-    return this.albumService.deleteAlbum(this.albumId).subscribe();
+    this.albumService.deleteAlbum(this.albumId).subscribe();
+    this.alertService.success(`Album ${this.selectedAlbum.title} has been removed from favourites`);
+    this.refresh()
   }
 
   public refresh() {
-    window.location.reload();
+    this.printAlbums();
   }
 
   public onSelect(album: Album): void {
@@ -48,7 +47,6 @@ export class AlbumsComponent implements OnInit {
   }
 
     ngOnInit() {
-    //this.getAlbum();
     this.printAlbums();
   }
 

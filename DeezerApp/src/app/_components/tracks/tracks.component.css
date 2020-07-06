@@ -75,6 +75,7 @@
 }
 
 .cover {
-  display: inline-block;
-  padding-bottom: 40px;
+  position: relative;
+  bottom: 0.7em;
+  height: 125px;
 }

@@ -1,12 +1,16 @@
-<h2>EXPLORE</h2>
+<p class="h2">Hi {{currentUser.username}}! let's Explore</p>
 
 
-<form (ngSubmit)="onSubmit()" class="searchbar">
+<form [formGroup]="queryForm" (ngSubmit)="onSubmit()" class="searchbar">
   <div class="input-group">
-    <input type="text" [formControl]="query" class="form-control" placeholder="Search..." aria-label="Search..." aria-describedby="Search...">
+    <label for="query"></label>
+    <input type="text" formControlName="query" class="form-control" placeholder="Search..." [ngClass]="{ 'is-invalid': submitted && q.query.errors }" />
     <div class="input-group-append" id="button-addon4">
       <button class="btn btn-outline-secondary" type="submit" (click)="onTrackClick()">Track</button>
       <button class="btn btn-outline-secondary" type="submit" (click)="onAlbumClick()">Album</button>
+    </div>
+    <div *ngIf="submitted && q.query.errors" class="invalid-feedback">
+      <div *ngIf="q.query.errors.required">You need to type at least one sign</div>
     </div>
   </div>
 </form>
@@ -14,14 +18,13 @@
 <div *ngIf="divider === true; else elseBlock">
   <ul class="tracks">
     <li *ngFor="let track of tracks" (click)="onSelectTrack(track)">
-      <span class="badge">
-        <img src="{{track.cover}}" alt="Album cover">
+      <span>
+        <img src="{{track.cover}}" alt="Album cover" class="cover">
       </span>
-      <span class="details">
-        <p>{{track.title}}</p>
-        <p>{{track.artist}}</p>
-        <p>{{track.deezerId}}</p>
-      </span>
+      <div class="details">
+        <p class="title">{{track.title}}</p>
+        <p class="artist">{{track.artist}} - {{track.album}}</p>
+      </div>
       <button type="button" class="btn btn-outline-dark" (click)="addTrack()">Add</button>
     </li>
   </ul>
@@ -38,11 +41,11 @@
   <ul class="tracks">
     <li *ngFor="let album of albums" (click)="onSelectAlbum(album)">
       <span>
-        <img src="{{album.cover}}" alt="Album cover">
+        <img src="{{album.cover}}" alt="Album cover" class="cover">
       </span>
       <span class="details">
-        <p  class="h6">{{album.title}}</p>
-        <p>{{album.genre}}</p>
+        <p class="title">{{album.title}}</p>
+        <p class="artist">{{album.genre}}</p>
 
       </span>
       <button type="button" class="btn btn-outline-dark" (click)="addAlbum()" >Add</button>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Track} from "../../_models/track";
 import {TrackService} from "../../_services/track.service";
+import {AlertService} from "../../_services/alert.service";
 
 @Component({
   selector: 'app-tracks',
@@ -23,7 +24,8 @@ export class TracksComponent implements OnInit {
 
 
   constructor(
-    private trackService: TrackService
+    private trackService: TrackService,
+    private alertService: AlertService
   ) { }
 
   public printTracks() {
@@ -33,14 +35,15 @@ export class TracksComponent implements OnInit {
 
 
   public deleteTrack() {
+    this.alertService.clear();
     this.trackId = this.selectedTrack.trackId;
-    window.alert("Track removed from favourites");
-    return this.trackService.deleteTrack(this.trackId).subscribe();
+    this.trackService.deleteTrack(this.trackId).subscribe();
+    this.alertService.success(`Track ${this.selectedTrack.title} has been removed from favourites`);
+    this.refresh();
   }
 
   public onSelect(track: Track): void {
     this.selectedTrack = track;
-
     this.msbapTitle = track.artist + ' - ' + track.title;
     this.msbapAudioUrl = track.preview;
     this.msbapDisplayTitle = true;
@@ -48,7 +51,7 @@ export class TracksComponent implements OnInit {
   }
 
   public refresh() {
-    window.location.reload();
+    this.printTracks();
   }
 
   ngOnInit() {

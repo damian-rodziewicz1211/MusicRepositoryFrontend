@@ -5,9 +5,10 @@ import {UserService} from "../../_services/user.service";
 import {TrackService} from "../../_services/track.service";
 import {Track} from "../../_models/track";
 import {SearchService} from "../../_services/search.service";
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Album} from "../../_models/album";
 import {AlbumService} from "../../_services/album.service";
+import {AlertService} from "../../_services/alert.service";
 
 @Component({
   selector: 'app-home',
@@ -22,8 +23,8 @@ export class HomeComponent implements OnInit {
   selectedAlbum: Album;
   id : number;
 
-  query = new FormControl('');
-  submitted = false;
+  queryForm: FormGroup;
+  submitted : boolean;
 
   msbapTitle : string = '';
   msbapAudioUrl : string = '';
@@ -37,9 +38,22 @@ export class HomeComponent implements OnInit {
     private userService: UserService,
     private searchService: SearchService,
     private trackService: TrackService,
-    private albumService: AlbumService
+    private albumService: AlbumService,
+    private formBuilder:FormBuilder,
+    private alertService:AlertService
   ) {
     this.currentUser = this.authenticationService.currentUserValue;
+  }
+
+  ngOnInit() {
+    this.queryForm = this.formBuilder.group({
+      query: ['', Validators.required]
+    });
+    this.currentUser.username = this.userService.username;
+  }
+
+  get q() {
+    return this.queryForm.controls;
   }
 
   public getTracks(q : string) {
@@ -53,14 +67,16 @@ export class HomeComponent implements OnInit {
   }
 
   public addTrack() {
+    this.alertService.clear();
     this.id = this.selectedTrack.deezerId;
-    window.alert("Track added to favourites")
-    return this.trackService.addTrack(this.id).subscribe();
+    this.alertService.success(`Track ${this.selectedTrack.title} has been added to favourites`)
+    this.trackService.addTrack(this.id).subscribe();
   }
 
   public addAlbum() {
+    this.alertService.clear();
     this.id = this.selectedAlbum.deezerId;
-    window.alert("Album added to favourites")
+    this.alertService.success(`Album ${this.selectedAlbum.title} has been added to favourites`)
     return this.albumService.addAlbum(this.id).subscribe();
   }
 
@@ -77,14 +93,23 @@ export class HomeComponent implements OnInit {
   }
 
   public onSubmit() {
+    this.submitted = true;
+
+    this.alertService.clear();
+
+    if(this.queryForm.invalid){
+      return;
+    }
+
     if(this.divider) {
-      this.submitted = true;
-      this.getTracks(this.query.value);
+      this.getTracks(this.q.query.value);
     }
+
     if(!this.divider){
-      this.submitted = true;
-      this.getAlbums(this.query.value);
+      this.getAlbums(this.q.query.value);
     }
+
+
   }
 
   public onTrackClick(): void {
@@ -96,7 +121,6 @@ export class HomeComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
-  }
+
 
 }

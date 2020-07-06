@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../../_services/authentication.service";
 import {AlertService} from "../../_services/alert.service";
 import {first} from "rxjs/operators";
+import {UserService} from "../../_services/user.service";
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private userService: UserService
   ) {
     if (this.authenticationService.currentUserValue) {
       this.router.navigate(['/']);
@@ -44,6 +46,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
+
     this.alertService.clear();
 
     if(this.loginForm.invalid) {
@@ -61,5 +64,6 @@ export class LoginComponent implements OnInit {
           this.alertService.error(error);
           this.loading = false;
         });
+    this.userService.currentUser(this.f.username.value);
   }
 }
