@@ -49,6 +49,7 @@ export class HomeComponent implements OnInit {
     this.queryForm = this.formBuilder.group({
       query: ['', Validators.required]
     });
+
     this.currentUser.username = this.userService.username;
   }
 
